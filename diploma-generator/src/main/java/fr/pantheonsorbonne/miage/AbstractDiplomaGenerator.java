@@ -9,8 +9,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Path;
 import java.util.Collection;
-
-
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
@@ -34,7 +32,9 @@ public abstract class AbstractDiplomaGenerator implements DiplomaGenerator {
 	 * 
 	 * @return
 	 */
-	abstract protected Collection<DiplomaSnippet> getDiplomaSnippets();
+
+	protected abstract  Collection<DiplomaSnippet> getDiplomaSnippets();
+
 
 	/*
 	 * (non-Javadoc)
@@ -42,7 +42,9 @@ public abstract class AbstractDiplomaGenerator implements DiplomaGenerator {
 	 * @see fr.pantheonsorbonne.miage.DiplomaGenerator#getContent()
 	 */
 	@Override
+
 	public InputStream getContent() throws GenerateFileException, GeneratorDocumentException {
+
 
 		try (ByteArrayOutputStream bos = new ByteArrayOutputStream();) {
 
@@ -51,13 +53,15 @@ public abstract class AbstractDiplomaGenerator implements DiplomaGenerator {
 			return new ByteArrayInputStream(bos.toByteArray());
 
 		} catch (IOException e) {
- 
+
 			throw new GenerateFileException();
 		}
 
 	}
 
+
 	protected void writeToStream(OutputStream os) throws GeneratorDocumentException {
+
 		Document document = new Document();
 	
 		try {
@@ -76,7 +80,9 @@ public abstract class AbstractDiplomaGenerator implements DiplomaGenerator {
 			document.add(Image.getInstance(image.toAbsolutePath().toString()));
 
 		} catch (DocumentException | IOException e) {
-			throw new GeneratorDocumentException();
+
+		throw new GeneratorDocumentException();
+
 		} finally {
 			document.close();
 		}
